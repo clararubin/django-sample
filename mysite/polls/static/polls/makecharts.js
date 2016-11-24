@@ -1,4 +1,4 @@
-var glob;
+var glob=[]
 /**
  * buttons that user can click on to display data over particular duration
  */
@@ -86,6 +86,12 @@ var chart = AmCharts.makeChart( "chartdiv", {
 
 } );
 
+function filterByTag(data , tag){
+  return data.filter(function (el) {
+    return el.tag === tag;
+  });
+}
+
 function getTags(){
   var found = {};
   var distinct = [];
@@ -108,10 +114,8 @@ function getTags(){
 
 var numberOfDataSets = 5;
 window.onload= function(){
-  var tmp = {"HIHI":[{"tag": "tag_1", "date" : 1, "value":1} , {"tag": "tag_1", "date" : 2, "value":2}, {"tag": "tag_1", "date" : 3, "value":3},{"tag": "tag_2", "date" : 1, "value":2} , {"tag": "tag_2", "date" : 2, "value":4}, {"tag": "tag_2", "date" : 3, "value":6}]}
   // import data
   mydata = myJSON.HIHI;
-  mydata = tmp.HIHI;
 
 
   var tags = getTags(mydata)
@@ -129,23 +133,25 @@ startDate.setHours( 0, 0, 0, 0 );
 startDate.setDate( startDate.getDate() - 10 );
 
 
-// jQuery( ".btn-dataset-add" ).on( "click", function() {
 
-var ind = 0;
 
-// TEMPORARY RANDOM DATA GENERATOR
-function getNextData(tag) {
-  var tmp =  [myJSON.HIHI[ind]]
-  ind+=1;
-  // alert(ind)
-  return tmp;
+function getNextData(myTag) {
+  var points = filterByTag(mydata, myTag);
+  for (var i = 0; i < points.length; i++) {
+    var d = new Date(points[i].date)
+        points[i].date  = d;
+
+  }
+    glob.push(points)
+
+  return points;
 }
 
 
 function populateData(tag){
       // CREATE DATASET
       var dataset = new AmCharts.DataSet();
-      dataset.title = "Dataset " +ind+ ( chart.dataSets.length + 1 );
+      dataset.title = "Dataset " + ( chart.dataSets.length + 1 );
       dataset.categoryField = "date";
       dataset.dataProvider = getNextData(tag);
 

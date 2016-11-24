@@ -1,1 +1,1 @@
-{"HIHI":[{"tag": "tag_1", "date" : 1, "value":1} , {"tag": "tag_1", "date" : 2, "value":2}, {"tag": "tag_1", "date" : 3, "value":3},{"tag": "tag_2", "date" : 1, "value":2} , {"tag": "tag_2", "date" : 2, "value":4}, {"tag": "tag_2", "date" : 3, "value":6}]}
+{"HIHI":[{"tag": "tag_1", "date" : 1, "value":1} , {"tag": "tag_1", "date" : 1479955292000, "value":2}, {"tag": "tag_1", "date" : 2479955702000, "value":3},{"tag": "tag_2", "date" : 1, "value":10} , {"tag": "tag_2", "date" : 1479955292000, "value":20}, {"tag": "tag_2", "date" : 2479955702000, "value":30}]}
